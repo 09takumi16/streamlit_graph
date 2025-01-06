@@ -5,6 +5,10 @@ from io import BytesIO
 import zipfile
 import plotly.graph_objects as go
 
+def wrap_title(title, width=25):
+    # wrap the title
+    return "<br>".join([title[i:i+width] for i in range(0, len(title), width)])
+
 def plot_bar_graph(df: pd.DataFrame, age_column: str, question_column: str, answer_column: str) -> go.Figure:
     # make folder for output
     temp_dir = "output"
@@ -47,7 +51,7 @@ def plot_bar_graph(df: pd.DataFrame, age_column: str, question_column: str, answ
         
         # update layout
         fig.update_layout(
-            title=question,
+            title=wrap_title(question),
             xaxis_title="評価",
             yaxis_title="回答数",
             barmode="stack",
