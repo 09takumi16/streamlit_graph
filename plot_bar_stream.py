@@ -10,6 +10,9 @@ def plot_bar_graph(df: pd.DataFrame, age_column: str, question_column: str, answ
     temp_dir = "output"
     os.makedirs(temp_dir, exist_ok=True)
 
+    # make file name list
+    file_name_list = []
+
     # make age group column
     age_group_column = "年齢区分"
     df[age_group_column] = pd.cut(df[age_column], bins=range(20, 71, 10), right=False, labels=[f"{i}-{i+9}" for i in range(20, 70, 10)])
@@ -57,8 +60,13 @@ def plot_bar_graph(df: pd.DataFrame, age_column: str, question_column: str, answ
         )
         
         # save the figure
-        fig.write_html(f"output/{question}.html")
+        fig.write_html(f"{temp_dir}/{question[:50]}.html")
+        file_name_list.append([f"{question[:50]}.html", question])
     
+    # create a file name excel file
+    file_name_df = pd.DataFrame(file_name_list, columns=["file_name", "question"])
+    file_name_df.to_excel(f"{temp_dir}/file_name.xlsx", index=False)
+
      # create a zip file
     zip_buffer = BytesIO()
     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
