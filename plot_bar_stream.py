@@ -5,7 +5,7 @@ from io import BytesIO
 import zipfile
 import plotly.graph_objects as go
 
-def wrap_title(title, width=25):
+def wrap_title(title, width=40):
     # wrap the title
     return "<br>".join([title[i:i+width] for i in range(0, len(title), width)])
 
