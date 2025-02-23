@@ -64,8 +64,10 @@ def plot_bar_graph(df: pd.DataFrame, age_group_column: str, question_column: str
         )
         
         # save the figure
-        fig.write_html(f"{temp_dir}/{question[:50]}.html")
-        file_name_list.append([f"{question[:50]}.html", question])
+        # fig.write_html(f"{temp_dir}/{question[:50]}.html")
+        # file_name_list.append([f"{question[:50]}.html", question])
+        fig.write_image(f"{temp_dir}/{question[:50]}.png")
+        file_name_list.append([f"{question[:50]}.png", question])
     
     # create a file name excel file
     file_name_df = pd.DataFrame(file_name_list, columns=["file_name", "question"])
