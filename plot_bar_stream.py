@@ -9,7 +9,7 @@ def wrap_title(title, width=40):
     # wrap the title
     return "<br>".join([title[i:i+width] for i in range(0, len(title), width)])
 
-def plot_bar_graph(df: pd.DataFrame, age_column: str, question_column: str, answer_column: str) -> go.Figure:
+def plot_bar_graph(df: pd.DataFrame, age_group_column: str, question_column: str, answer_column: str) -> go.Figure:
     # make folder for output
     temp_dir = "output"
     os.makedirs(temp_dir, exist_ok=True)
@@ -18,8 +18,8 @@ def plot_bar_graph(df: pd.DataFrame, age_column: str, question_column: str, answ
     file_name_list = []
 
     # make age group column
-    age_group_column = "年齢区分"
-    df[age_group_column] = pd.cut(df[age_column], bins=range(20, 71, 10), right=False, labels=[f"{i}-{i+9}" for i in range(20, 70, 10)])
+    # age_group_column = "年齢区分"
+    # df[age_group_column] = pd.cut(df[age_column], bins=range(20, 71, 10), right=False, labels=[f"{i}-{i+9}" for i in range(20, 70, 10)])
 
     # color code for each age group
     color_palette = [
