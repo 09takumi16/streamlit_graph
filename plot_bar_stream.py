@@ -54,6 +54,9 @@ def plot_bar_graph(df: pd.DataFrame, age_group_column: str, question_column: str
             title=wrap_title(question),
             xaxis_title="評価",
             yaxis_title="回答数",
+            font=dict(
+                family="Arial, sans-serif"
+                ),
             barmode="stack",
             legend_title="年齢区分",
             xaxis=dict(
