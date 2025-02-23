@@ -113,6 +113,8 @@ def streamlit_app():
     if input_file is not None:
         df: pd.DataFrame = open_file(input_file)
 
+        df['開始時刻'] = pd.to_datetime(df['開始時刻'])
+
         # for null data
         df = fill_null(df)
         
