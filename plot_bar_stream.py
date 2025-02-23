@@ -94,12 +94,25 @@ def open_file(file):
         return pd.read_excel(file)
     else:
         return None
+    
+def fill_null(df):
+    # fill null data
+    # fill null data with average value if it is numerical data, else fill with 0
+    for column in df.columns:
+        if df[column].dtype in ['int64', 'float64']:
+            df[column] = df[column].fillna(df[column].mean())
+        else:
+            df[column] = df[column].fillna(0)
+    return df
 
 def streamlit_app():
     st.title("Bar Graph Generator")
     input_file = st.file_uploader("Upload CSV", type=['csv', 'xlsx'])
     if input_file is not None:
         df: pd.DataFrame = open_file(input_file)
+
+        # for null data
+        df = fill_null(df)
         
         # show the first 5 rows of the data
         st.write(df.head())
