@@ -55,7 +55,7 @@ def plot_bar_graph(df: pd.DataFrame, age_group_column: str, question_column: str
             xaxis_title="評価",
             yaxis_title="回答数",
             font=dict(
-                family="Arial, sans-serif"
+                family="Noto Sans JP, sans-serif"
                 ),
             barmode="stack",
             legend_title="年齢区分",
@@ -123,6 +123,15 @@ def streamlit_app():
         
         # show the first 5 rows of the data
         st.write(df.head())
+
+        st.markdown("""
+            <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+            body {
+                font-family: 'Noto Sans JP', sans-serif;
+            }
+            </style>
+            """, unsafe_allow_html=True)
 
         # select box for age column
         age_column = st.radio("Select the age column", df.columns)
